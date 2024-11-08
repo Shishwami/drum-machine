@@ -1,38 +1,111 @@
+body,
+html {
+  padding: 0;
+  margin: auto;
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: burlywood;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#drum-machine {
+  display: flex;
+  background-color: aqua;
+  width: 100%;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#drum-machine #pads-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: aquamarine;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#drum-machine #pads-container .pads {
+  display: flex;
+  background-color: azure;
+  width: 70px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+#drum-machine #controls-container {
+  background-color: bisque;
+  flex: 1;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+#drum-machine #controls-container #toggle-container {
+  background-color: aquamarine;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex: 1;
+  justify-content: space-around;
 }
 
-.App-link {
-  color: #61dafb;
+#drum-machine #controls-container #toggle-container button {
+  width: 40%;
+  height: 35px;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#drum-machine #controls-container #display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+#drum-machine #controls-container #display p {
+  display: block;
+  width: 80%;
+  text-align: center;
+  background-color: darkgrey;
+  padding: 15px 10px;
+}
+
+#drum-machine #controls-container #slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+#drum-machine #controls-container #slider-container #volume-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 90%;
+  cursor: pointer;
+}
+
+#drum-machine #controls-container #slider-container #volume-slider::-webkit-slider-runnable-track {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 5px;
+  background-color: aqua;
+}
+
+#drum-machine #controls-container #slider-container #volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 25px;
+  width: 15px;
+  transform: translateY(-10px);
+  background-color: aqua;
 }
