@@ -196,7 +196,7 @@ function App() {
             <button id="btn-power" onClick={togglePower}>Power</button>
             <button id="btn-toggle" onClick={toggleSet}>Bank</button>
           </div>
-          <div id="display">{display}</div>
+          <div id="display"><p>{display}</p></div>
           <div id="slider-container">
             <input
               id="volume-slider"
