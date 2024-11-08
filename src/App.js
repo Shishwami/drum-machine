@@ -102,22 +102,30 @@ const sets = {
 
 function App() {
 
-  const [setInUse, updateSet] = useState(sets.set1);
+  const [setInUse, updateSet] = useState(sets.set2);
+  
 
   const toggleSet = () => {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
   }
 
   const playPad = (element) => {
-    element.play();
+    if (element) {
+      element.currentTime = 0;
+      element.play();
+    }
   };
 
-  const handleClick = (event) =>{
-    playPad(event.target.querySelector("audio"));
+  const handleClick = (event) => {
+    const elementClicked = event.target;
+    const audio = elementClicked.querySelector("audio")
+    playPad(audio);
   }
 
-  const handleKeyDown = (event) =>{
-    playPad(document.getElementById(event.key.toUpperCase()));
+  const handleKeyDown = (event) => {
+    const id = event.key.toUpperCase();
+    const audio = document.getElementById(id);
+    playPad(audio);
   }
 
   useEffect(() => {
