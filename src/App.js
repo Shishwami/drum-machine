@@ -103,7 +103,7 @@ const sets = {
 function App() {
 
   const [setInUse, updateSet] = useState(sets.set2);
-  
+
 
   const toggleSet = () => {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
@@ -118,13 +118,13 @@ function App() {
 
   const handleClick = (event) => {
     const elementClicked = event.target;
-    const audio = elementClicked.querySelector("audio")
+    const audio = elementClicked.querySelector("audio");
     playPad(audio);
   }
 
   const handleKeyDown = (event) => {
-    const id = event.key.toUpperCase();
-    const audio = document.getElementById(id);
+    const elemetPressed = document.querySelector(`[data-letter="${event.key.toUpperCase()}"]`);
+    const audio = elemetPressed?.querySelector("audio");
     playPad(audio);
   }
 
