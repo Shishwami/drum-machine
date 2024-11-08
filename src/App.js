@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Drumpads from './Components/DrumPads';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const sets = {
   set1: {
@@ -108,12 +108,26 @@ function App() {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
   }
 
-  const playPad = (event) => {
-    const audioElement = event.currentTarget.querySelector("audio");
-    if (audioElement) {
-      audioElement.play();
-    }
+  const playPad = (element) => {
+    element.play();
   };
+
+  const handleClick = (event) =>{
+    playPad(event.target.querySelector("audio"));
+  }
+
+  const handleKeyDown = (event) =>{
+    playPad(document.getElementById(event.key.toUpperCase()));
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }
+  );
 
   return (
     <div className="App">
@@ -122,7 +136,7 @@ function App() {
           {
             Object.keys(setInUse).map(pads => {
               const { id, letter, link } = setInUse[pads]
-              return (<Drumpads key={id} id={id} letter={letter} link={link} onClick={playPad} />);
+              return (<Drumpads key={id} id={id} letter={letter} link={link} onClick={handleClick} />);
             })
           }
         </div>
