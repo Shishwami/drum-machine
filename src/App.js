@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Drumpads from './Components/DrumPads';
 import { useEffect, useState } from 'react';
@@ -105,6 +104,12 @@ const sets = {
 function App() {
 
   const [setInUse, updateSet] = useState(sets.set2);
+  const [display, setDisplay] = useState("Welcome");
+  const [volume, setVolume] = useState(document.getElementById("volume-slider").value);
+
+  const updateVolume = (event) => {
+    setVolume(event.target.value);
+  }
 
   const toggleSet = () => {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
@@ -113,9 +118,14 @@ function App() {
   const playPad = (element) => {
     if (element) {
       element.currentTime = 0;
+      element.volume = volume / 100;
       element.play();
     }
   };
+
+  const updateDisplay = () => {
+
+  }
 
   const handleClick = (event) => {
     const elementClicked = event.target;
@@ -130,11 +140,14 @@ function App() {
   }
 
   useEffect(() => {
+
+
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
+
   }
   );
 
@@ -144,13 +157,21 @@ function App() {
         <div id="pads-container">
           {
             Object.keys(setInUse).map(pads => {
-              const { id, letter, link } = setInUse[pads]
-              return (<Drumpads key={id} id={id} letter={letter} link={link} onClick={handleClick} />);
+              const list = [];
+              if (pads !== 'name') {
+                const { id, letter, link } = setInUse[pads]
+                list.push(<Drumpads key={pads} id={id} letter={letter} link={link} onClick={handleClick} />);
+              }
+              return (list);
             })
           }
         </div>
-        <div id="controls-coontainer">
-
+        <div id="controls-container">
+          <div id="toggle-container"></div>
+          <div id="display">{display}</div>
+          <div id="slider-container">
+            <input id="volume-slider" type='range' min='0' max='100' onChange={updateVolume} />
+          </div>
         </div>
       </div>
     </div>
