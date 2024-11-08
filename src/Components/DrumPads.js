@@ -1,17 +1,19 @@
-function Drumpads(id, link, key) {
+function Drumpads({id, link, letter}) {
 
-    <div
-        key={id}
-        id={id}
-    >
-        <audio
-            key={key}
-            id={key}
-            src={link}
+    return (
+        <div
+            key={id}
+            id={id}
         >
+            <audio
+                key={letter}
+                id={letter}
+                src={link}
+            >
 
-        </audio>{key}
-    </div>
+            </audio>{letter}
+        </div>
+    );
 
 }
 
