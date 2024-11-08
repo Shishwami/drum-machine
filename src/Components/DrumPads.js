@@ -5,6 +5,7 @@ function Drumpads({ id, link, letter, onClick }) {
             id={id}
             data-letter={letter}
             onClick={onClick}
+            className="pads"
         >
             <audio
                 key={letter}
