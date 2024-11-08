@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import Drumpads from './Components/DrumPads';
+import { useState } from 'react';
 
 const sets = {
   set1: {
@@ -99,6 +101,9 @@ const sets = {
 };
 
 function App() {
+
+  const [setInUse,updateSet] = useState(sets.set1);
+
   return (
     <div className="App">
       <div id="drum-machine">
