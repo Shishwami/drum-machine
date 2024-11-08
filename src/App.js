@@ -101,7 +101,14 @@ const sets = {
 function App() {
   return (
     <div className="App">
-      
+      <div id="drum-machine">
+        <div id="pads-container">
+          
+        </div>
+        <div id="controls-coontainer">
+
+        </div>
+      </div>
     </div>
   );
 }
