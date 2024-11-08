@@ -102,7 +102,11 @@ const sets = {
 
 function App() {
 
-  const [setInUse,updateSet] = useState(sets.set1);
+  const [setInUse, updateSet] = useState(sets.set1);
+
+  const toggleSet = () => {
+    updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
+  }
 
   return (
     <div className="App">
