@@ -118,30 +118,33 @@ function App() {
   }
   const togglePower = () => {
     updatePower(powered === true ? false : true);
+    setDisplay(<div dangerouslySetInnerHTML={{ __html: "&nbsp;" }} />)
   }
   const toggleSet = () => {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
-    console.log(setInUse.name);
+    setDisplay(setInUse.name)
   }
 
-  const playPad = (element) => {
+  const playPad = (element,parent) => {
     if (element && powered) {
       element.currentTime = 0;
       element.volume = volume / 100;
       element.play();
+
+      setDisplay(parent.id.replace("-"," "));
     }
   };
 
   const handleClick = (event) => {
     const elementClicked = event.target;
     const audio = elementClicked.querySelector("audio");
-    playPad(audio);
+    playPad(audio,elementClicked);
   }
 
   const handleKeyDown = (event) => {
     const elemetPressed = document.querySelector(`[data-letter="${event.key.toUpperCase()}"]`);
     const audio = elemetPressed?.querySelector("audio");
-    playPad(audio);
+    playPad(audio,elemetPressed);
   }
 
   useEffect(() => {
