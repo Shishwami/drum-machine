@@ -103,9 +103,10 @@ const sets = {
 
 function App() {
 
+  const default_volume = 30
+
   const [setInUse, updateSet] = useState(sets.set2);
-  const [display, setDisplay] = useState("Welcome");
-  const [volume, setVolume] = useState(document.getElementById("volume-slider").value);
+  const [volume, setVolume] = useState(default_volume);
 
   const updateVolume = (event) => {
     setVolume(event.target.value);
@@ -123,10 +124,6 @@ function App() {
     }
   };
 
-  const updateDisplay = () => {
-
-  }
-
   const handleClick = (event) => {
     const elementClicked = event.target;
     const audio = elementClicked.querySelector("audio");
@@ -140,10 +137,7 @@ function App() {
   }
 
   useEffect(() => {
-
-
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -168,9 +162,9 @@ function App() {
         </div>
         <div id="controls-container">
           <div id="toggle-container"></div>
-          <div id="display">{display}</div>
+          <div id="display"></div>
           <div id="slider-container">
-            <input id="volume-slider" type='range' min='0' max='100' onChange={updateVolume} />
+            <input id="volume-slider" type='range' min='0' max='100' defaultValue={default_volume} onChange={updateVolume} />
           </div>
         </div>
       </div>
