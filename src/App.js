@@ -108,22 +108,36 @@ function App() {
   const default_volume = 30;
   const default_set = sets.set1
 
-  const [setInUse, updateSet] = useState(default_set);
   const [powered, updatePower] = useState(true);
+  const [setInUse, updateSet] = useState(default_set);
   const [display, setDisplay] = useState("Welcome");
   const [volume, setVolume] = useState(default_volume);
 
-  const updateVolume = (event) => {
-    setVolume(event.target.value);
-    setDisplay(`Volume: ${volume}`);
-  }
+
   const togglePower = () => {
     updatePower(powered === true ? false : true);
-    setDisplay(<div dangerouslySetInnerHTML={{ __html: "&nbsp;" }} />)
+    updateDisplay(<div dangerouslySetInnerHTML={{ __html: "&nbsp;" }} />);
+    toggleElement(document.getElementById("volume-slider"));
+    toggleElement(document.getElementById("btn-toggle"));
   }
   const toggleSet = () => {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
-    setDisplay(setInUse.name)
+    updateDisplay(setInUse.name);
+  }
+  const updateDisplay = (text) => {
+    setDisplay(text);
+  }
+  const updateVolume = (event) => {
+    if (powered) {
+      setVolume(event.target.value);
+      updateDisplay(`Volume: ${volume}`);
+    }
+  }
+
+  const toggleElement = (element) => {
+    console.log(element);
+
+    element.disabled = powered
   }
 
   const playPad = (element, parent) => {
@@ -132,7 +146,7 @@ function App() {
       element.volume = volume / 100;
       element.play();
 
-      setDisplay(parent.id.replace("-", " "));
+      updateDisplay(parent.id.replace("-", " "));
     }
   };
 
@@ -179,8 +193,8 @@ function App() {
         </div>
         <div id="controls-container">
           <div id="toggle-container">
-            <button onClick={togglePower}>Power</button>
-            <button onClick={toggleSet}>Bank</button>
+            <button id="btn-power" onClick={togglePower}>Power</button>
+            <button id="btn-toggle" onClick={toggleSet}>Bank</button>
           </div>
           <div id="display">{display}</div>
           <div id="slider-container">
