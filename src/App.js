@@ -103,7 +103,13 @@ function App() {
     <div className="App">
       <div id="drum-machine">
         <div id="pads-container">
-          
+          {
+            Object.keys(setInUse).map(pads => {
+              const { id, letter, link } = setInUse[pads]
+              console.log(id, link, letter)
+              return (<Drumpads key={id} id={id} letter={letter} link={link} />);
+            })
+          }
         </div>
         <div id="controls-coontainer">
 
