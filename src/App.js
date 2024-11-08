@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 const sets = {
   set1: {
+    name: "Smooth Piano Kit",
     1: {
       letter: "Q",
       id: "Chord-1",
@@ -52,6 +53,7 @@ const sets = {
     }
   },
   set2: {
+    name: "Heater Kit",
     1: {
       letter: "Q",
       id: "Chord-1",
@@ -103,7 +105,6 @@ const sets = {
 function App() {
 
   const [setInUse, updateSet] = useState(sets.set2);
-
 
   const toggleSet = () => {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
