@@ -108,6 +108,13 @@ function App() {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
   }
 
+  const playPad = (event) => {
+    const audioElement = event.currentTarget.querySelector("audio");
+    if (audioElement) {
+      audioElement.play();
+    }
+  };
+
   return (
     <div className="App">
       <div id="drum-machine">
@@ -115,8 +122,7 @@ function App() {
           {
             Object.keys(setInUse).map(pads => {
               const { id, letter, link } = setInUse[pads]
-              console.log(id, link, letter)
-              return (<Drumpads key={id} id={id} letter={letter} link={link} />);
+              return (<Drumpads key={id} id={id} letter={letter} link={link} onClick={playPad} />);
             })
           }
         </div>
