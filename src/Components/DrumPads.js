@@ -1,12 +1,11 @@
-function Drumpads({id, link, letter}) {
+function Drumpads({id, link, letter,onClick}) {
 
     return (
         <div
-            key={id}
             id={id}
+            onClick={onClick}
         >
             <audio
-                key={letter}
                 id={letter}
                 src={link}
             >
