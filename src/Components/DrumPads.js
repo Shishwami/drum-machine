@@ -3,6 +3,7 @@ function Drumpads({id, link, letter,onClick}) {
     return (
         <div
             id={id}
+            data-letter={letter}
             onClick={onClick}
         >
             <audio
