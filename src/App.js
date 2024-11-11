@@ -130,13 +130,11 @@ function App() {
   const updateVolume = (event) => {
     if (powered) {
       setVolume(event.target.value);
-      updateDisplay(`Volume: ${volume}`);
+      updateDisplay(`Volume: ${event.target.value}`);
     }
   }
 
   const toggleElement = (element) => {
-    console.log(element);
-
     element.disabled = powered
   }
 
@@ -201,6 +199,7 @@ function App() {
             <input
               id="volume-slider"
               type="range"
+              step="1"
               min="0"
               max="100"
               defaultValue={default_volume}
