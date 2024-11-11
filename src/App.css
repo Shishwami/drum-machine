@@ -1,3 +1,8 @@
+:root {
+  --background-color: #ffedc6;
+  --background-color2: #e2be70;
+}
+
 body,
 html {
   padding: 0;
@@ -9,13 +14,18 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
   height: 100vh;
-  background-color: burlywood;
+  background-color: var(--background-color);
+}
+
+* {
+  outline: 1px solid red;
 }
 
 #drum-machine {
   display: flex;
-  background-color: aqua;
+  background-color: var(--background-color2);
   width: 100%;
   min-width: 300px;
   max-width: 500px;
@@ -29,12 +39,11 @@ html {
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
   padding: 10px;
-  background-color: aquamarine;
 }
 
 #drum-machine #pads-container .pads {
   display: flex;
-  background-color: azure;
+  background-color: var(--background-color);
   width: 70px;
   height: 70px;
   justify-content: center;
@@ -43,7 +52,6 @@ html {
 }
 
 #drum-machine #controls-container {
-  background-color: bisque;
   flex: 1;
   padding: 10px;
   display: flex;
@@ -51,7 +59,6 @@ html {
 }
 
 #drum-machine #controls-container #toggle-container {
-  background-color: aquamarine;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,8 +68,10 @@ html {
 
 #drum-machine #controls-container #toggle-container button {
   width: 40%;
-  height: 35px;
   border-radius: 5px;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 15px;
 }
 
 #drum-machine #controls-container #display {
@@ -77,7 +86,7 @@ html {
   width: 80%;
   text-align: center;
   background-color: darkgrey;
-  padding: 15px 10px;
+  padding: 20px 10px;
 }
 
 #drum-machine #controls-container #slider-container {
@@ -85,6 +94,7 @@ html {
   justify-content: center;
   align-items: center;
   flex: 1;
+  flex: .5;
 }
 
 #drum-machine #controls-container #slider-container #volume-slider {
