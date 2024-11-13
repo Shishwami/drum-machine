@@ -210,7 +210,7 @@ function App() {
             <button id="btn-toggle" onClick={toggleSet} data-powered={powered} data-set-name={setInUse.name}>Bank</button>
           </div>
           <div id="display" data-powered={powered}><p>{display}</p></div>
-          <div id="slider-container">
+          <div id="slider-container" data-powered={powered}>
             <input
               id="volume-slider"
               type="range"
