@@ -23,6 +23,10 @@ html {
   height: 100vh;
 }
 
+* {
+  outline: 1px solid red;
+}
+
 #drum-machine {
   display: flex;
   width: 100%;
@@ -39,6 +43,7 @@ html {
   grid-template-rows: repeat(3, 1fr);
   gap: 20px;
   padding: 10px;
+  user-select: none;
 }
 
 #drum-machine #pads-container .drum-pad {
@@ -48,9 +53,12 @@ html {
   height: 70px;
   justify-content: center;
   align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--drum-pads-powered);
   border-radius: 5px;
   outline: 5px solid var(--outline-inactive);
-  transition: transform 0.1s ease, outline 0.1s, box-shadow 0.1s;
+  transition: transform 0.1s ease, outline 0.1s, box-shadow 0.1s ease-out, color 0.1 ease-out;
 }
 
 #drum-machine #pads-container .drum-pad[data-powered="true"] {
@@ -60,13 +68,14 @@ html {
 
 #drum-machine #pads-container .drum-pad[data-powered="true"]:hover {
   transform: scale(1.03);
+  color: var(--drum-pads-played);
   outline: 5px solid var(--drum-pads-played);
 }
 
 #drum-machine #pads-container .drum-pad[data-played="true"] {
+  transform: scale(1.03);
   outline: 5px solid var(--drum-pads-played);
   box-shadow: 0 0 15px 10px var(--drum-pads-played);
-  transform: scale(1.03);
 }
 
 #drum-machine #controls-container {
