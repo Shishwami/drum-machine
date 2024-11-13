@@ -107,8 +107,9 @@ function App() {
 
   const default_volume = 30;
   const default_set = sets.set1
+  const default_powered = true;
 
-  const [powered, updatePower] = useState(true);
+  const [powered, updatePower] = useState(default_powered);
   const [setInUse, updateSet] = useState(default_set);
   const [display, setDisplay] = useState("Welcome");
   const [volume, setVolume] = useState(default_volume);
@@ -143,6 +144,15 @@ function App() {
       element.currentTime = 0;
       element.volume = volume / 100;
       element.play();
+
+
+      let timeoutId;
+      parent.setAttribute('data-played', "true");
+      clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
+        parent.setAttribute('data-played', "false");
+      }, 50);
 
       updateDisplay(parent.id.replace("-", " "));
     }
@@ -181,6 +191,7 @@ function App() {
                     id={id}
                     letter={letter}
                     link={link}
+                    powered={powered}
                     onClick={handleClick}
                   />
                 );
