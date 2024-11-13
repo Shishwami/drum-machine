@@ -108,18 +108,22 @@ function App() {
   const default_volume = 30;
   const default_set = sets.set1
   const default_powered = true;
+  const default_msg = "Welcome"
 
   const [powered, updatePower] = useState(default_powered);
   const [setInUse, updateSet] = useState(default_set);
-  const [display, setDisplay] = useState("Welcome");
+  const [display, setDisplay] = useState(default_msg);
   const [volume, setVolume] = useState(default_volume);
 
 
   const togglePower = () => {
     updatePower(powered === true ? false : true);
-    updateDisplay(<div dangerouslySetInnerHTML={{ __html: "&nbsp;" }} />);
-    toggleElement(document.getElementById("volume-slider"));
-    toggleElement(document.getElementById("btn-toggle"));
+    updateDisplay(" ");
+    document.getElementById("volume-slider").disabled = powered;
+
+    if(!powered){
+      updateDisplay(default_msg);
+    }
   }
   const toggleSet = () => {
     updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
@@ -135,9 +139,7 @@ function App() {
     }
   }
 
-  const toggleElement = (element) => {
-    element.disabled = powered
-  }
+  
 
   const playPad = (element, parent) => {
     if (element && powered) {
@@ -202,8 +204,8 @@ function App() {
         </div>
         <div id="controls-container">
           <div id="toggle-container">
-            <button id="btn-power" onClick={togglePower}>Power</button>
-            <button id="btn-toggle" onClick={toggleSet}>Bank</button>
+            <button id="btn-power" onClick={togglePower} data-powered={powered}>Power</button>
+            <button id="btn-toggle" onClick={toggleSet} data-powered={powered} data-set-name={setInUse.name}>Bank</button>
           </div>
           <div id="display"><p>{display}</p></div>
           <div id="slider-container">
