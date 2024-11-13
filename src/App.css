@@ -1,10 +1,12 @@
 :root {
-  --drum-machine-bg: black;
-  --drum-pads-color: grey;
-  --drum-pads-powered: azure;
+  --background: #29292c;
+  --drum-machine-bg: #1e1f22;
+  --drum-pads-color: linear-gradient(45deg, var(--drum-machine-bg), #39404b);
+  --drum-pads-powered: #ceebeb;
   --drum-pads-played: yellow;
-  --button-color: grey;
-  --button-outline: green;
+  --power-button-outline: lime;
+  --set1-outline: red;
+  --set2-outline: cyan;
   --outline-inactive: #dfdfdf;
 }
 
@@ -21,10 +23,7 @@ html {
   align-items: center;
   flex: 1;
   height: 100vh;
-}
-
-* {
-  outline: 1px solid red;
+  background-color: var(--background);
 }
 
 #drum-machine {
@@ -33,7 +32,7 @@ html {
   min-width: 500px;
   max-width: 500px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: var(--drum-machine-bg);
 }
 
@@ -48,14 +47,14 @@ html {
 
 #drum-machine #pads-container .drum-pad {
   display: flex;
-  background-color: var(--drum-pads-color);
+  background: var(--drum-pads-color);
   width: 70px;
   height: 70px;
   justify-content: center;
   align-items: center;
   font-size: 20px;
   font-weight: 700;
-  color: var(--drum-pads-powered);
+  color: var(--outline-inactive);
   border-radius: 5px;
   outline: 5px solid var(--outline-inactive);
   transition: transform 0.1s ease, outline 0.1s, box-shadow 0.1s ease-out, color 0.1 ease-out;
@@ -63,6 +62,7 @@ html {
 
 #drum-machine #pads-container .drum-pad[data-powered="true"] {
   outline: 5px solid var(--drum-pads-powered);
+  color: var(--drum-pads-powered);
   box-shadow: 0 0 5px 5px var(--drum-pads-powered);
 }
 
@@ -99,21 +99,59 @@ html {
   padding: 10px;
   font-weight: 700;
   font-size: 15px;
+  border: none;
+  transition: transform 1.3s ease, outline 1.3s, box-shadow 1.3s ease-out, color 1.3 ease-out;
+  background: var(--drum-pads-color);
+  color: var(--outline-inactive);
+  outline: 5px solid var(--outline-inactive);
+}
+
+#drum-machine #controls-container #toggle-container button:hover {
+  transform: scale(1.03);
+}
+
+#drum-machine #controls-container #toggle-container #btn-power[data-powered="true"] {
+  color: var(--power-button-outline);
+  outline: 5px solid var(--power-button-outline);
+  box-shadow: 0 0 10px 10px var(--power-button-outline);
+}
+
+#drum-machine #controls-container #toggle-container #btn-toggle[data-powered="true"][data-set-name="Heater Kit"] {
+  color: var(--set1-outline);
+  outline: 5px solid var(--set1-outline);
+  box-shadow: 0 0 15px 10px var(--set1-outline);
+}
+
+#drum-machine #controls-container #toggle-container #btn-toggle[data-powered="true"][data-set-name="Smooth Piano Kit"] {
+  color: var(--set2-outline);
+  outline: 5px solid var(--set2-outline);
+  box-shadow: 0 0 15px 10px var(--set2-outline);
 }
 
 #drum-machine #controls-container #display {
+  background: var(--background);
+  padding: 10px;
+  margin: 25px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
+  flex: 1;
+  outline: 5px solid var(--outline-inactive);
+  border-radius: 5px;
 }
 
 #drum-machine #controls-container #display p {
+  color: #ff8398;
+  font-size: large;
+  font-weight: 600;
   display: block;
-  width: 80%;
+  width: 100%;
   text-align: center;
-  background-color: darkgrey;
-  padding: 20px 10px;
+}
+
+#drum-machine #controls-container #display[data-powered="true"] {
+  outline: 5px solid var(--drum-pads-powered);
 }
 
 #drum-machine #controls-container #slider-container {
@@ -121,7 +159,7 @@ html {
   justify-content: center;
   align-items: center;
   flex: 1;
-  flex: .5;
+  flex: 1;
 }
 
 #drum-machine #controls-container #slider-container #volume-slider {
