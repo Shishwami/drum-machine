@@ -152,7 +152,7 @@ function App() {
 
       timeoutId = setTimeout(() => {
         parent.setAttribute('data-played', "false");
-      }, 50);
+      }, 100);
 
       updateDisplay(parent.id.replace("-", " "));
     }
