@@ -121,13 +121,15 @@ function App() {
     updateDisplay(" ");
     document.getElementById("volume-slider").disabled = powered;
 
-    if(!powered){
+    if (!powered) {
       updateDisplay(default_msg);
     }
   }
   const toggleSet = () => {
-    updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
-    updateDisplay(setInUse.name);
+    if (powered) {
+      updateSet(setInUse === sets.set1 ? sets.set2 : sets.set1);
+      updateDisplay(setInUse.name);
+    }
   }
   const updateDisplay = (text) => {
     setDisplay(text);
@@ -139,7 +141,7 @@ function App() {
     }
   }
 
-  
+
 
   const playPad = (element, parent) => {
     if (element && powered) {
@@ -207,7 +209,7 @@ function App() {
             <button id="btn-power" onClick={togglePower} data-powered={powered}>Power</button>
             <button id="btn-toggle" onClick={toggleSet} data-powered={powered} data-set-name={setInUse.name}>Bank</button>
           </div>
-          <div id="display"><p>{display}</p></div>
+          <div id="display" data-powered={powered}><p>{display}</p></div>
           <div id="slider-container">
             <input
               id="volume-slider"
