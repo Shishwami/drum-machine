@@ -58,7 +58,10 @@ html {
   color: var(--outline-inactive);
   border-radius: 5px;
   outline: 5px solid var(--outline-inactive);
-  transition: transform 0.1s ease, outline 0.1s, box-shadow 0.1s ease-out, color 0.1 ease-out;
+  transition: transform 0.1s ease,
+ outline 0.1s,
+ box-shadow 0.1s ease-out,
+ color 0.1 ease-out;
 }
 
 #drum-machine #pads-container .drum-pad[data-powered="true"] {
@@ -161,42 +164,71 @@ html {
   justify-content: center;
   align-items: center;
   flex: 1;
-  flex: 1;
 }
 
-#drum-machine #controls-container #slider-container #volume-slider {
-  appearance: none;
+#volume-slider {
   -webkit-appearance: none;
+  appearance: none;
   width: 90%;
+  cursor: pointer;
+  background: transparent; /* remove default background */
+}
+
+/* WebKit: Track */
+#volume-slider::-webkit-slider-runnable-track {
+  height: 5px;
+  background-color: var(--outline-inactive, #ccc);
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+}
+
+/* WebKit: Thumb */
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 25px;
+  width: 15px;
+  background-color: var(--outline-inactive, #ccc);
+  border-radius: 3px;
+  transform: translateY(-10px);
+  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 
-#drum-machine #controls-container #slider-container #volume-slider::-webkit-slider-runnable-track {
-  appearance: none;
-  -webkit-appearance: none;
-  height: 5px;
-  background-color: var(--outline-inactive);
-  transition: background-color 0.3s ease;
-}
-
-#drum-machine #controls-container #slider-container #volume-slider::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  height: 25px;
-  width: 15px;
-  transform: translateY(-10px);
-  background-color: var(--outline-inactive);
-  transition: background-color 0.3s ease;
-}
-
-#drum-machine #controls-container #slider-container[data-powered="true"] #volume-slider::-webkit-slider-thumb {
+/* Powered styles for WebKit */
+#slider-container[data-powered="true"] #volume-slider::-webkit-slider-thumb {
   background-color: #ce02ce;
 }
 
-#drum-machine #controls-container #slider-container[data-powered="true"] #volume-slider::-webkit-slider-runnable-track {
-  background-color: var(--drum-pads-powered);
+#slider-container[data-powered="true"] #volume-slider::-webkit-slider-runnable-track {
+  background-color: var(--drum-pads-powered, #6c1d8c);
 }
 
+/* Firefox: Track */
+#volume-slider::-moz-range-track {
+  height: 5px;
+  background-color: var(--outline-inactive, #ccc);
+  border-radius: 4px;
+}
+
+/* Firefox: Thumb */
+#volume-slider::-moz-range-thumb {
+  height: 25px;
+  width: 15px;
+  background-color: var(--outline-inactive, #ccc);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Powered styles for Firefox */
+#slider-container[data-powered="true"] #volume-slider::-moz-range-thumb {
+  background-color: #ce02ce;
+}
+
+#slider-container[data-powered="true"] #volume-slider::-moz-range-track {
+  background-color: var(--drum-pads-powered, #6c1d8c);
+}
 @media (max-width: 600px) {
   #drum-machine {
     display: flex;
